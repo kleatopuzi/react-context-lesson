@@ -34,9 +34,6 @@ const CartProvider = ({ children }) => {
 
   useEffect(() => {
     setCartItemsCount(getCartItemsCount(cartItems));
-  }, [cartItems]);
-
-  useEffect(() => {
     setItemsTotal(getCartItemsTotal(cartItems));
   }, [cartItems]);
 
