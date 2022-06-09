@@ -10,14 +10,14 @@ import CheckoutPage from "./pages/checkout/checkout.component";
 import Header from "./components/header/header.component";
 
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-import createUserContext from "./contexts/current-user/current-user.context";
+import CurrentUserContext from "./contexts/current-user/current-user.context";
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      createUserContext: null,
+      CurrentUserContext: null,
     };
   }
   unsubscribeFromAuth = null;
@@ -37,7 +37,7 @@ class App extends React.Component {
         });
       }
 
-      this.setState(userAuth);
+      this.setState({ currentUser: userAuth });
     });
   }
 
@@ -48,9 +48,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <createUserContext.Provider value={this.state.currentUser}>
+        <CurrentUserContext.Provider value={this.state.currentUser}>
           <Header />
-        </createUserContext.Provider>
+        </CurrentUserContext.Provider>
         <Routes>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/shop/*" element={<ShopPage />}></Route>
